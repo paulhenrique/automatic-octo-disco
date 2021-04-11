@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <form>
+    <form @submit.prevent="sendEmail">
       <label>Name</label>
       <input type="text" v-model="name" name="name" placeholder="Your Name" />
       <label>Email</label>
@@ -20,10 +20,45 @@
       >
       </textarea>
 
-      <input type="submit" value="Send" />
+      <button type="submit">Enviar</button>
     </form>
   </div>
 </template>
+<script>
+import emailjs from "emailjs-com";
+
+export default {
+  data: () => ({
+    name: "",
+    message: "",
+    email: ""
+  }),
+  methods: {
+    sendEmail: function(e) {
+      try {
+        console.log(process.env.VUE_APP_USER_ID);
+        emailjs.sendForm(
+          process.env.VUE_APP_SERVICE_ID,
+          process.env.VUE_APP_TEMPLATE_ID,
+          e.target,
+          process.env.VUE_APP_USER_ID,
+          {
+            name: this.name,
+            email: this.email,
+            message: this.message
+          }
+        );
+      } catch (err) {
+        console.log({ err });
+      }
+
+      this.name = "";
+      this.email = "";
+      this.message = "";
+    }
+  }
+};
+</script>
 <style scoped>
 * {
   box-sizing: border-box;
@@ -56,7 +91,7 @@ textarea {
   resize: vertical;
 }
 
-input[type="submit"] {
+button {
   background-color: #4caf50;
   color: white;
   padding: 12px 20px;
@@ -65,7 +100,7 @@ input[type="submit"] {
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
+button:hover {
   background-color: #45a049;
 }
 </style>
