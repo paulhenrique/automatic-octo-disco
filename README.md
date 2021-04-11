@@ -1,6 +1,8 @@
-# vue-emailjs-demo
+# Vue EmailJS Integration
 
-## Project setup
+Repositório criado com integração da Application Programming Interface (API) EmailJS com o Framework Front-end VueJS para fins de estudo e testes
+
+## Para rodar o projeto
 ```
 npm install
 ```
@@ -19,6 +21,3 @@ npm run build
 ```
 npm run lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
