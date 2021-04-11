@@ -1,6 +1,7 @@
 <template>
   <div id="app">
-    <SendEmailForm msg="Welcome to Your Vue.js App" />
+    <h1>Send Email Implement</h1>
+    <SendEmailForm />
   </div>
 </template>
 
@@ -11,8 +12,6 @@ export default {
   name: "App",
   components: {
     SendEmailForm
-  },
-  mounted() {
   }
 };
 </script>
